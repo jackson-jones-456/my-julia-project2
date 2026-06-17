@@ -17,3 +17,40 @@ function check_four_point(d)
     end
     return true
 end
+
+function is_metric(d)
+    n = size(d, 1)
+    
+    # Check symmetry
+    for i in 1:n
+        for j in 1:n
+            if d[i,j] != d[j,i]
+                println("Fails symmetry at ($i,$j)")
+                return false
+            end
+        end
+    end
+    
+    # Check zero diagonal
+    for i in 1:n
+        if d[i,i] != 0
+            println("Fails zero diagonal at ($i,$i)")
+            return false
+        end
+    end
+    
+    # Check triangle inequality
+    for i in 1:n
+        for j in 1:n
+            for k in 1:n
+                if d[i,k] > d[i,j] + d[j,k]
+                    println("Fails triangle inequality at ($i,$j,$k)")
+                    return false
+                end
+            end
+        end
+    end
+    
+    return true
+end
+
