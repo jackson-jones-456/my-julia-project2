@@ -54,3 +54,14 @@ function is_metric(d)
     return true
 end
 
+function is_tree_metric(d)
+    if !is_metric(d)
+        println("Fails metric conditions")
+        return false
+    end
+    if !check_four_point(d)
+        println("Fails four point condition")
+        return false
+    end
+    return true
+end
